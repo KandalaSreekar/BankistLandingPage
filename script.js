@@ -99,3 +99,20 @@ nav.addEventListener('mouseout', function(e){
         logo.style.opacity = 1
     }
 })
+
+// Sticky Navigation
+
+const stickyNav = function(entries){
+    const [entry] = entries
+    nav.classList.add('sticky')
+    if(!entry.isIntersecting) nav.classList.add('sticky')
+    else nav.classList.remove('sticky')
+}
+const header = document.querySelector(".header")
+const navHeight = nav.getBoundingClientRect().height
+const headerObserver = new IntersectionObserver(stickyNav, {
+    root: null,
+    threshold: 0,
+    rootMargin: `-${navHeight}px`,
+})
+headerObserver.observe(header)
